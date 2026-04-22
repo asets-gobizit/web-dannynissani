@@ -3,9 +3,9 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Danny Nissani — CRM &amp; AI Solutions Consulting</title>
-<meta name="description" content="Danny Nissani — CRM and AI solutions consulting. Blending technical and business expertise to help companies choose the right tools and grow.">
-<meta name="keywords" content="Danny Nissani, CRM, AI consulting, Zoho, system analyst, CRM solution expert, business development">
+<title>Danny Nissani — AI Automation Expert</title>
+<meta name="description" content="Danny Nissani — AI Automation Expert. Technical + business background applied to CRM, AI automation, and solutions consulting.">
+<meta name="keywords" content="Danny Nissani, AI automation, CRM, Zoho, system analyst, solutions consulting">
 <meta name="author" content="Danny Nissani">
 <link rel="icon" type="image/svg+xml" href="favicon.svg">
 <link rel="shortcut icon" type="image/svg+xml" href="favicon.svg">
@@ -28,33 +28,75 @@
     background: var(--bg);
     line-height: 1.6;
   }
-  header {
-    background: linear-gradient(135deg, var(--blue-deep) 0%, var(--blue-mid) 100%);
+
+  /* ===== Hero banner ===== */
+  .hero-wrap {
+    position: relative;
+    width: 100%;
+    background: #0B3B6F url("hero-banner.jpg") center center / cover no-repeat;
+    min-height: 320px;
+    display: flex;
+    align-items: center;
+  }
+  .hero-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 3rem 2rem;
+    width: 100%;
+  }
+  .hero-title {
     color: #fff;
-    padding: 3rem 1.5rem 2.5rem;
-    text-align: center;
+    font-size: 2.6rem;
+    font-weight: 800;
+    letter-spacing: 1px;
+    margin: 0 0 0.4rem;
+    text-shadow: 0 2px 10px rgba(0,0,0,0.35);
   }
-  header img.hero {
-    display: block;
-    margin: 0 auto 1.25rem;
-    max-width: 160px;
-    height: auto;
-    background: #fff;
-    padding: 10px;
-    border-radius: 8px;
-    box-shadow: 0 6px 20px rgba(0,0,0,0.15);
-  }
-  header h1 {
-    font-size: 2.2rem;
-    margin: 0.5rem 0 0.4rem;
-    font-weight: 700;
-    letter-spacing: -0.5px;
-  }
-  header p.tag {
+  .hero-sub {
+    color: #fff;
+    font-family: "Brush Script MT", "Segoe Script", cursive;
+    font-size: 1.6rem;
+    font-style: italic;
     margin: 0;
-    opacity: 0.92;
-    font-size: 1.05rem;
+    text-shadow: 0 2px 6px rgba(0,0,0,0.3);
+    opacity: 0.95;
   }
+
+  /* ===== Section cards (CRM / SOLUTIONS / RESEARCH / SUPPORT) ===== */
+  .cards-wrap { background: #f5f9fc; padding: 2rem 1rem; border-bottom: 1px solid var(--border); }
+  .cards {
+    max-width: 1100px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+    gap: 1rem;
+  }
+  .card {
+    background: #fff;
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+  }
+  .card .head img { width: 100%; height: auto; display: block; border-radius: 6px 6px 0 0; }
+  .card .body { padding: 0.9rem 1rem 1rem; color: var(--muted); font-size: 0.95rem; flex-grow: 1; }
+  .card .body strong { color: var(--blue-deep); }
+  .card .more {
+    padding: 0.55rem 1rem 0.9rem;
+    border-top: 1px solid var(--border);
+    text-align: right;
+  }
+  .card .more a {
+    color: var(--blue-mid);
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 0.92rem;
+  }
+  .card .more a:hover { color: var(--blue-deep); text-decoration: underline; }
+
+  /* ===== Main content ===== */
   main { max-width: 900px; margin: 0 auto; padding: 2.5rem 1.5rem; }
   section { margin-bottom: 2.8rem; }
   h2 {
@@ -67,21 +109,7 @@
   p { margin: 0 0 1rem; color: var(--muted); }
   p.lead { color: var(--ink); font-size: 1.08rem; }
 
-  .value-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-    gap: 1rem;
-    margin-top: 1.2rem;
-  }
-  .value {
-    background: var(--surface);
-    border-left: 4px solid var(--blue-light);
-    padding: 1rem 1.1rem;
-    border-radius: 4px;
-  }
-  .value strong { color: var(--blue-deep); display: block; margin-bottom: 0.25rem; }
-  .value span { color: var(--muted); font-size: 0.95rem; }
-
+  /* ===== Poll ===== */
   .poll {
     background: var(--surface);
     border: 1px solid var(--border);
@@ -124,6 +152,7 @@
     font-size: 0.95rem;
   }
 
+  /* ===== Contact ===== */
   .contact {
     text-align: center;
     background: linear-gradient(135deg, var(--blue-light) 0%, var(--blue-mid) 100%);
@@ -132,12 +161,9 @@
     border-radius: 8px;
   }
   .contact h2 { color: #fff; border-bottom-color: rgba(255,255,255,0.4); display: inline-block; }
-  .contact a {
-    color: #fff;
-    font-weight: 600;
-    text-decoration: underline;
-  }
+  .contact a { color: #fff; font-weight: 600; text-decoration: underline; }
 
+  /* ===== Footer ===== */
   footer {
     text-align: center;
     padding: 1.5rem;
@@ -149,22 +175,50 @@
   footer a:hover { text-decoration: underline; }
 
   @media (max-width: 600px) {
-    header h1 { font-size: 1.7rem; }
+    .hero-title { font-size: 1.8rem; }
+    .hero-sub { font-size: 1.2rem; }
+    .hero-inner { padding: 2rem 1.25rem; }
     h2 { font-size: 1.3rem; }
   }
 </style>
 </head>
 <body>
 
-<header>
-  <img class="hero" src="hero.png" alt="Danny Nissani">
-  <h1>Danny Nissani</h1>
-  <p class="tag">CRM &amp; AI Solutions Consulting</p>
-</header>
+<div class="hero-wrap">
+  <div class="hero-inner">
+    <h1 class="hero-title">DANNYNISSANI.COM</h1>
+    <p class="hero-sub">AI Automation Expert</p>
+  </div>
+</div>
+
+<div class="cards-wrap">
+  <div class="cards">
+    <div class="card">
+      <div class="head"><img src="icon-crm.png" alt="CRM"></div>
+      <div class="body"><strong>CRM can make a valuable change for you!</strong> How well do you know your customers? Do you know their true worth for your company?</div>
+      <div class="more"><a href="#working-together">Read more »</a></div>
+    </div>
+    <div class="card">
+      <div class="head"><img src="icon-solutions.png" alt="Solutions"></div>
+      <div class="body"><strong>Choosing the right solution</strong> has a huge impact on the total costs of your IT implementation. <strong>Make the right decision!</strong></div>
+      <div class="more"><a href="#what-i-do">Read more »</a></div>
+    </div>
+    <div class="card">
+      <div class="head"><img src="icon-research.png" alt="Research"></div>
+      <div class="body"><strong>Learn from companies like yours,</strong> with similar characteristics, which CRM and AI strategies they used to expand their business.</div>
+      <div class="more"><a href="#poll">Read more »</a></div>
+    </div>
+    <div class="card">
+      <div class="head"><img src="icon-support.png" alt="Support"></div>
+      <div class="body"><strong>Support is an integral service.</strong> Once your solution is up and running, you still need the agility to keep it constantly tuned.</div>
+      <div class="more"><a href="#contact">Read more »</a></div>
+    </div>
+  </div>
+</div>
 
 <main>
 
-  <section>
+  <section id="what-i-do">
     <h2>What can I do for you?</h2>
     <p class="lead">
       Working alongside people from all walks of life has enabled me to discover and develop my natural talents. The most important of these is an ability to both listen to people and be perceptive to what lies between the words. I also have the ability to make everyone feel as a winner — a challenge that I find particularly rewarding.
@@ -177,39 +231,17 @@
     </p>
   </section>
 
-  <section>
-    <h2>How I help</h2>
-    <div class="value-grid">
-      <div class="value">
-        <strong>CRM that drives value</strong>
-        <span>How well do you know your customers? Do you know their true worth to your company?</span>
-      </div>
-      <div class="value">
-        <strong>Choose the right solution</strong>
-        <span>Choosing the right platform has a huge impact on the total cost of your IT implementation. Make the right decision.</span>
-      </div>
-      <div class="value">
-        <strong>Learn from peers</strong>
-        <span>Discover which CRM strategies companies like yours have used to expand their business.</span>
-      </div>
-      <div class="value">
-        <strong>Ongoing support</strong>
-        <span>Once your solution is up and running, you still need the agility to keep it constantly tuned.</span>
-      </div>
-    </div>
-  </section>
-
-  <section>
+  <section id="working-together">
     <h2>Working together</h2>
     <p>
       Meeting with me will immediately demonstrate how my interpersonal and communication skills can be used and valued. I am hardworking and highly motivated, and willing to give all my attention to the success of my clients.
     </p>
     <p>
-      Every business needs a good CRM — and, increasingly, the right AI layer on top of it. Learn how to improve your business with the assistance of a CRM and AI solutions expert. Find the potential and make it grow.
+      Every business needs a good CRM — and, increasingly, the right AI automation layer on top of it. Learn how to improve your business with the assistance of a CRM and AI automation expert. Find the potential and make it grow.
     </p>
   </section>
 
-  <section>
+  <section id="poll">
     <h2>Quick poll</h2>
     <div class="poll">
       <h3>Which AI technology interests you most for your business in 2026?</h3>
@@ -231,10 +263,10 @@
   <section id="contact" class="contact">
     <h2>Contact me</h2>
     <p style="color:#fff; opacity:0.95;">
-      Ready to talk CRM, AI, or both? Drop me a line.
+      Ready to talk AI, CRM or both? Drop me a line.
     </p>
     <p style="margin-top:1rem;">
-      <a href="mailto:danny@gobizit.ai">danny@gobizit.ai</a>
+      <a href="mailto:me@dannynissani.com">me@dannynissani.com</a>
     </p>
   </section>
 
