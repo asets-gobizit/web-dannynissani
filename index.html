@@ -53,13 +53,47 @@
     text-shadow: 0 2px 10px rgba(0,0,0,0.35);
   }
   .hero-sub {
-    color: #fff;
+    color: #000;
     font-family: "Brush Script MT", "Segoe Script", cursive;
     font-size: 1.6rem;
     font-style: italic;
     margin: 0;
-    text-shadow: 0 2px 6px rgba(0,0,0,0.3);
-    opacity: 0.95;
+    text-shadow: 0 1px 2px rgba(255,255,255,0.25);
+    opacity: 1;
+  }
+
+  /* ===== Top navigation ===== */
+  .topnav {
+    background: #fff;
+    border-bottom: 1px solid var(--border);
+    box-shadow: 0 1px 4px rgba(0,0,0,0.04);
+    position: sticky;
+    top: 0;
+    z-index: 50;
+  }
+  .topnav-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 1rem;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: flex-start;
+  }
+  .topnav a {
+    color: var(--ink);
+    text-decoration: none;
+    padding: 1rem 1.1rem;
+    font-weight: 600;
+    font-size: 0.95rem;
+    border-right: 1px solid var(--border);
+    transition: background 0.15s, color 0.15s;
+  }
+  .topnav a:first-child { border-left: 1px solid var(--border); }
+  .topnav a:hover { background: var(--blue-light); color: var(--blue-deep); }
+
+  @media (max-width: 680px) {
+    .topnav a { padding: 0.8rem 0.7rem; font-size: 0.85rem; }
   }
 
   /* ===== Section cards (CRM / SOLUTIONS / RESEARCH / SUPPORT) ===== */
@@ -191,27 +225,39 @@
   </div>
 </div>
 
-<div class="cards-wrap">
+<nav class="topnav">
+  <div class="topnav-inner">
+    <a href="#">Home</a>
+    <a href="#what-i-do">About</a>
+    <a href="#services">Services</a>
+    <a href="#working-together">My Experience</a>
+    <a href="#articles">Articles</a>
+    <a href="#poll">Poll</a>
+    <a href="#contact">Contact me</a>
+  </div>
+</nav>
+
+<div class="cards-wrap" id="services">
   <div class="cards">
     <div class="card">
       <div class="head"><img src="icon-crm.png" alt="CRM"></div>
       <div class="body"><strong>CRM can make a valuable change for you!</strong> How well do you know your customers? Do you know their true worth for your company?</div>
-      <div class="more"><a href="#working-together">Read more »</a></div>
+      <div class="more"><a href="articles/crm.html">Read more »</a></div>
     </div>
     <div class="card">
       <div class="head"><img src="icon-solutions.png" alt="Solutions"></div>
       <div class="body"><strong>Choosing the right solution</strong> has a huge impact on the total costs of your IT implementation. <strong>Make the right decision!</strong></div>
-      <div class="more"><a href="#what-i-do">Read more »</a></div>
+      <div class="more"><a href="articles/solutions.html">Read more »</a></div>
     </div>
     <div class="card">
       <div class="head"><img src="icon-research.png" alt="Research"></div>
       <div class="body"><strong>Learn from companies like yours,</strong> with similar characteristics, which CRM and AI strategies they used to expand their business.</div>
-      <div class="more"><a href="#poll">Read more »</a></div>
+      <div class="more"><a href="articles/research.html">Read more »</a></div>
     </div>
     <div class="card">
       <div class="head"><img src="icon-support.png" alt="Support"></div>
       <div class="body"><strong>Support is an integral service.</strong> Once your solution is up and running, you still need the agility to keep it constantly tuned.</div>
-      <div class="more"><a href="#contact">Read more »</a></div>
+      <div class="more"><a href="articles/support.html">Read more »</a></div>
     </div>
   </div>
 </div>
@@ -239,6 +285,17 @@
     <p>
       Every business needs a good CRM — and, increasingly, the right AI automation layer on top of it. Learn how to improve your business with the assistance of a CRM and AI automation expert. Find the potential and make it grow.
     </p>
+  </section>
+
+  <section id="articles">
+    <h2>Articles</h2>
+    <p>A few short pieces I've written from the field — the view from someone who has sat on both the technical and the business side of CRM and AI projects.</p>
+    <ul style="list-style: none; padding: 0; margin-top: 1rem;">
+      <li style="margin-bottom: 0.7rem;"><a href="articles/crm.html" style="color: var(--blue-deep); font-weight: 600; text-decoration: none;">→ Why your CRM isn't paying for itself — and how to turn it around</a></li>
+      <li style="margin-bottom: 0.7rem;"><a href="articles/solutions.html" style="color: var(--blue-deep); font-weight: 600; text-decoration: none;">→ Choosing a CRM in 2026: the five questions I ask before anyone shows me a demo</a></li>
+      <li style="margin-bottom: 0.7rem;"><a href="articles/research.html" style="color: var(--blue-deep); font-weight: 600; text-decoration: none;">→ Real stories: how three small businesses used AI + CRM to grow without adding headcount</a></li>
+      <li style="margin-bottom: 0.7rem;"><a href="articles/support.html" style="color: var(--blue-deep); font-weight: 600; text-decoration: none;">→ The hidden tax of "we'll figure out support later"</a></li>
+    </ul>
   </section>
 
   <section id="poll">
