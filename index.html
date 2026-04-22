@@ -11,7 +11,7 @@
 <link rel="shortcut icon" type="image/svg+xml" href="favicon.svg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Orbitron:wght@500;600;700;800&family=Share+Tech+Mono&display=swap" rel="stylesheet">
 <style>
   :root {
     --blue-light: #7EC8E3;
@@ -58,13 +58,18 @@
   }
   .hero-sub {
     color: #000;
-    font-family: "Outfit", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-    font-size: 2.6rem;
-    font-weight: 600;
-    letter-spacing: -1px;
-    margin: 0.6rem 0 0;
+    font-family: "Orbitron", "Share Tech Mono", "Courier New", monospace;
+    font-size: 2.4rem;
+    font-weight: 700;
+    font-style: italic;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin: 0.8rem 0 0;
     line-height: 1.1;
-    text-shadow: 0 1px 3px rgba(255,255,255,0.45);
+    text-shadow:
+      0 0 6px rgba(120, 255, 160, 0.35),
+      0 0 14px rgba(0, 255, 120, 0.18),
+      0 1px 0 rgba(255, 255, 255, 0.3);
   }
 
   /* ===== Top navigation ===== */
@@ -182,7 +187,7 @@
   .poll button:hover { background: var(--blue-deep); }
   .poll-result {
     margin-top: 1rem;
-    padding: 0.8rem;
+    padding: 0.8rem 1rem;
     background: #fff;
     border-left: 4px solid var(--blue-light);
     border-radius: 4px;
@@ -190,6 +195,42 @@
     color: var(--ink);
     font-size: 0.95rem;
   }
+  .poll-bars { margin-top: 1rem; display: none; }
+  .poll-bar-row { margin-bottom: 0.55rem; }
+  .poll-bar-label {
+    display: flex; justify-content: space-between;
+    font-size: 0.9rem; margin-bottom: 0.2rem; color: var(--ink);
+  }
+  .poll-bar-label .pct { font-weight: 600; color: var(--blue-deep); }
+  .poll-bar-track {
+    background: #e8eff5;
+    border-radius: 4px;
+    height: 10px;
+    overflow: hidden;
+  }
+  .poll-bar-fill {
+    height: 100%;
+    background: linear-gradient(90deg, var(--blue-light) 0%, var(--blue-mid) 100%);
+    width: 0;
+    transition: width 0.6s ease;
+  }
+  .poll-total {
+    margin-top: 0.7rem;
+    font-size: 0.85rem;
+    color: var(--muted);
+    text-align: right;
+  }
+  .poll-capped {
+    margin-top: 1rem;
+    padding: 0.8rem 1rem;
+    background: #fff7e6;
+    border-left: 4px solid #e6a600;
+    border-radius: 4px;
+    display: none;
+    color: var(--ink);
+    font-size: 0.95rem;
+  }
+  .poll-capped strong { color: #a66e00; }
 
   /* ===== Contact ===== */
   .contact {
@@ -215,7 +256,7 @@
 
   @media (max-width: 600px) {
     .hero-title { font-size: 1.8rem; }
-    .hero-sub { font-size: 1.7rem; letter-spacing: -0.5px; }
+    .hero-sub { font-size: 1.4rem; letter-spacing: 1px; }
     .hero-inner { padding: 2rem 1.25rem; }
     h2 { font-size: 1.3rem; }
   }
@@ -316,9 +357,13 @@
         <button type="submit">Vote</button>
       </form>
       <div class="poll-result" id="pollResult">
-        Thanks for voting — your answer was recorded locally. Want to discuss it?
-        <a href="#contact" style="color: var(--blue-mid);">Get in touch</a>.
+        Thanks for voting! Here's how everyone else is leaning so far.
       </div>
+      <div class="poll-capped" id="pollCapped">
+        <strong>Vote Tomorrow.</strong> We've hit today's response cap. Results below are live — come back after midnight (UTC) to add yours.
+      </div>
+      <div class="poll-bars" id="pollBars"></div>
+      <div class="poll-total" id="pollTotal"></div>
     </div>
   </section>
 
@@ -339,12 +384,96 @@
 </footer>
 
 <script>
-  document.getElementById('pollForm').addEventListener('submit', function(e) {
+(function(){
+  var API = 'https://api.dannynissani.com/poll';
+  var LABELS = {
+    agents:  'Autonomous AI agents',
+    crm:     'AI-augmented CRM',
+    voice:   'AI voice assistants',
+    content: 'Generative AI for content',
+    data:    'AI for data analysis'
+  };
+  var form    = document.getElementById('pollForm');
+  var result  = document.getElementById('pollResult');
+  var capped  = document.getElementById('pollCapped');
+  var barsEl  = document.getElementById('pollBars');
+  var totalEl = document.getElementById('pollTotal');
+
+  function renderBars(totals){
+    var keys = Object.keys(LABELS);
+    var sum = keys.reduce(function(a,k){ return a + (totals[k]||0); }, 0);
+    barsEl.innerHTML = keys.map(function(k){
+      var v = totals[k] || 0;
+      var pct = sum ? Math.round(v * 100 / sum) : 0;
+      return '<div class="poll-bar-row">' +
+        '<div class="poll-bar-label"><span>' + LABELS[k] + '</span>' +
+          '<span class="pct">' + pct + '%</span></div>' +
+        '<div class="poll-bar-track"><div class="poll-bar-fill" style="width:' + pct + '%"></div></div>' +
+        '</div>';
+    }).join('');
+    barsEl.style.display = 'block';
+    totalEl.textContent = sum + ' total vote' + (sum === 1 ? '' : 's') + ' (all time)';
+  }
+
+  function disableForm(){
+    Array.prototype.forEach.call(form.querySelectorAll('input,button'), function(el){ el.disabled = true; });
+  }
+
+  function loadTotals(){
+    return fetch(API, { method: 'GET' })
+      .then(function(r){ return r.json().catch(function(){ return null; }); })
+      .then(function(d){
+        if (d && d.totals) {
+          renderBars(d.totals);
+          if (d.capped) { capped.style.display = 'block'; disableForm(); }
+        }
+      })
+      .catch(function(){ /* silent — poll just won't show totals */ });
+  }
+
+  // Prevent double-voting from same browser
+  var VOTED_KEY = 'dn_poll_ai_2026_voted';
+  if (localStorage.getItem(VOTED_KEY)) {
+    disableForm();
+    result.textContent = 'You already voted on this poll. Here\u2019s the current standing:';
+    result.style.display = 'block';
+  }
+
+  form.addEventListener('submit', function(e){
     e.preventDefault();
-    var picked = document.querySelector('input[name="ai"]:checked');
+    var picked = form.querySelector('input[name="ai"]:checked');
     if (!picked) return;
-    document.getElementById('pollResult').style.display = 'block';
+    var btn = form.querySelector('button[type="submit"]');
+    btn.disabled = true; btn.textContent = 'Voting…';
+
+    fetch(API + '?option=' + encodeURIComponent(picked.value), { method: 'POST' })
+      .then(function(r){
+        return r.json().then(function(d){ return { status: r.status, data: d }; });
+      })
+      .then(function(x){
+        if (x.status === 429 || (x.data && x.data.error === 'daily_cap_reached')) {
+          capped.style.display = 'block';
+          if (x.data && x.data.totals) renderBars(x.data.totals);
+          disableForm();
+          return;
+        }
+        if (!x.data || !x.data.ok) throw new Error('bad response');
+        localStorage.setItem(VOTED_KEY, '1');
+        result.style.display = 'block';
+        renderBars(x.data.totals);
+        if (x.data.capped) capped.style.display = 'block';
+        disableForm();
+      })
+      .catch(function(){
+        btn.disabled = false; btn.textContent = 'Vote';
+        result.textContent = 'Sorry — couldn\u2019t reach the poll service. Try again in a moment.';
+        result.style.display = 'block';
+      });
   });
+
+  // Load current totals on page open
+  loadTotals();
+})();
 </script>
 
 </body>

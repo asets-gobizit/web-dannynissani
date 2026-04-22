@@ -38,16 +38,21 @@ body {
 }
 .hero-sub {
   color: #000;
-  font-family: "Outfit", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-  font-size: 2rem;
-  font-weight: 600;
-  letter-spacing: -0.8px;
+  font-family: "Orbitron", "Share Tech Mono", "Courier New", monospace;
+  font-size: 1.9rem;
+  font-weight: 700;
+  font-style: italic;
+  letter-spacing: 2px;
+  text-transform: uppercase;
   line-height: 1.1;
-  margin: 0.4rem 0 0;
-  text-shadow: 0 1px 3px rgba(255,255,255,0.45);
+  margin: 0.6rem 0 0;
+  text-shadow:
+    0 0 6px rgba(120, 255, 160, 0.35),
+    0 0 14px rgba(0, 255, 120, 0.18),
+    0 1px 0 rgba(255, 255, 255, 0.3);
 }
 @media (max-width: 600px) {
-  .hero-sub { font-size: 1.5rem; }
+  .hero-sub { font-size: 1.2rem; letter-spacing: 1px; }
 }
 .topnav {
   background: #fff;
