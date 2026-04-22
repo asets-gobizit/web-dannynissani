@@ -9,6 +9,9 @@
 <meta name="author" content="Danny Nissani">
 <link rel="icon" type="image/svg+xml" href="favicon.svg">
 <link rel="shortcut icon" type="image/svg+xml" href="favicon.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
   :root {
     --blue-light: #7EC8E3;
@@ -46,6 +49,7 @@
   }
   .hero-title {
     color: #fff;
+    font-family: "Outfit", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
     font-size: 2.6rem;
     font-weight: 800;
     letter-spacing: 1px;
@@ -54,12 +58,13 @@
   }
   .hero-sub {
     color: #000;
-    font-family: "Brush Script MT", "Segoe Script", cursive;
-    font-size: 1.6rem;
-    font-style: italic;
-    margin: 0;
-    text-shadow: 0 1px 2px rgba(255,255,255,0.25);
-    opacity: 1;
+    font-family: "Outfit", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    font-size: 2.6rem;
+    font-weight: 600;
+    letter-spacing: -1px;
+    margin: 0.6rem 0 0;
+    line-height: 1.1;
+    text-shadow: 0 1px 3px rgba(255,255,255,0.45);
   }
 
   /* ===== Top navigation ===== */
@@ -210,7 +215,7 @@
 
   @media (max-width: 600px) {
     .hero-title { font-size: 1.8rem; }
-    .hero-sub { font-size: 1.2rem; }
+    .hero-sub { font-size: 1.7rem; letter-spacing: -0.5px; }
     .hero-inner { padding: 2rem 1.25rem; }
     h2 { font-size: 1.3rem; }
   }
